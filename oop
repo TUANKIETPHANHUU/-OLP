@@ -1,0 +1,99 @@
+#include<bits/stdc++.h>
+#include<string.h>
+using namespace std;
+class Vemaybay{
+	private:
+		string tenchuyen,ngaybay;
+		double giave;
+		public:
+			Vemaybay(){}
+			~Vemaybay(){}
+			void Nhap(){
+				cout <<"Nhap ten chuyen:";
+				cin>>tenchuyen;
+				cout << "Nhap ngay bay:";
+				cin>>ngaybay;
+				cout << "Nhap gia ve:";
+				cin>>giave;
+			}
+			void Xuat(){
+				cout << "Ten chuyen:" << tenchuyen << endl;
+				cout << "Ngay bay:" << ngaybay	<< endl;
+				cout << "Gia ve:" << giave << endl;		
+			}
+			double getgiave(){
+				return giave;
+			}
+};
+class Nguoi{
+	private:
+		string hoten,gioitinh;
+		int tuoi;
+		public:
+			Nguoi(){}
+			~Nguoi(){}
+			void Nhap(){
+				cout << "Nhap ho ten:";
+				cin>>hoten;
+				cout << "Nhap gioi tinh:";
+				cin>>gioitinh;
+				cout << "Nhap tuoi:";
+				cin>>tuoi;
+			}
+			void Xuat(){
+				cout << "Ho ten:" << hoten << endl;
+				cout << "Gioi tinh:" << gioitinh << endl;
+				cout << "Tuoi:" << tuoi << endl;
+			}
+};
+class Hanhkhach: public Nguoi{
+	Vemaybay *ve;
+	int soluong;
+	public:
+		HanhKhach(){
+			ve = new
+			Vemaybay[soluong];
+		}
+		~Hanhkhach(){
+			delete[] ve;
+		}
+		void Nhap(){
+			Nguoi::Nhap();
+			cout << "Nhap so luong ve:";
+			cin>>soluong;
+			for(int i=0; i<soluong; i++){
+				ve[i].Nhap();			
+			}
+		}
+		void Xuat(){
+			Nguoi::Xuat();
+			cout << "Nhap so luong ve:";
+			cin>>soluong;
+			for(int i=0; i<soluong; i++){
+				ve[i].Xuat();
+			}
+		}
+		double tongtien(){
+			double tong = 0;
+			for(int i=0; i<soluong; i++){
+				tong += ve[i].getgiave();
+			}
+			return tong;
+		}		
+};
+int32_t main(){
+	int n;
+	cout << "Nhap so luong hang khach:";
+	cin>>n;
+	Hanhkhach *hk = new Hanhkhach[n];
+	for(int i=0; i<n; i++){
+		hk[i].Nhap();
+		hk[i].Xuat();
+		cout << "Tong tien phai tra cua hanh khach " << i + 1 << "la" << hk[i].tongtien() << endl << endl;
+	}
+	delete[] hk;
+	
+	return 0;
+}
+ 
+
